@@ -72,3 +72,153 @@ section {
     transform: none;
   }
 }
+
+/* The sidebar - Fixed height calculation */
+.sidebar {
+    height: 100vh; /* Use viewport height instead of percentage */
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: #202020;
+    overflow-x: hidden;
+    transition: 1s;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 2px 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Sidebar content wrapper */
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-top: 60px;
+    padding-bottom: 30px; /* Add bottom padding */
+}
+
+/* Navigation links section */
+.nav-links {
+    flex: 1;
+}
+
+/* The sidebar links */
+.sidebar a {
+    padding: 12px 8px 12px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+    border-left: 3px solid transparent;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+    color: #7dcdff;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left-color: #7dcdff;
+}
+
+/* Sidebar footer for social media - Fixed positioning */
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto; /* Push to bottom */
+    text-align: center;
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+.sidebar-footer h3 {
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Horizontal social icons with proper spacing */
+.sidebar .social-icons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    /* padding: 0 10px; */
+    margin-bottom: 60px;
+}
+
+.sidebar .social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0;
+    border-left: none;
+    flex-shrink: 0;
+    font-size: 18px; /* Ensure icon size is proper */
+}
+
+.sidebar .social-icons a:hover {
+    background-color: #7dcdff;
+    color: #202020;
+    transform: translateY(-2px);
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    margin: 20px;
+    transition: background-color 0.3s;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+/* Style page content */
+#main {
+    transition: margin-left 1s;
+    padding: 0;
+}
+
+/* On smaller screens */
+@media screen and (max-height: 450px) {
+    .sidebar-content {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .sidebar a {
+        font-size: 18px;
+    }
+    .sidebar-footer {
+        padding: 15px;
+    }
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .sidebar .social-icons {
+        gap: 8px;
+        padding: 0 5px;
+    }
+    
+    .sidebar .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .sidebar-footer h3 {
+        font-size: 16px;
+    }
+}
