@@ -106,13 +106,13 @@ section {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-top: 60px;
-    padding-bottom: 0px;
 }
 
 /* Navigation links section */
 .nav-links {
     flex: 1;
+    padding-top: 60px; 
+    overflow-y: auto;
 }
 
 /* The sidebar links */
