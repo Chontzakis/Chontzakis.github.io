@@ -7,48 +7,172 @@
   <title>Dionysios Chontzakis</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Background canvas */
+    #mlp-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      background: black;
+    }
+  </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <div id="mySidebar" class="sidebar">
-        <div class="sidebar-content">
-            <!-- Navigation Links -->
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="projects.html">Projects</a>
-                <a href="thesis.html">Thesis</a>
-            </div>
-            
-            <!-- Social Media Section at Bottom -->
-            <div class="sidebar-footer">
-                <h3>Contact</h3>
-                <div class="social-icons">
-                    <a href="mailto:dionysischontzakis@gmail.com" target="_blank" aria-label="Gmail"><i class="fa-regular fa-envelope"></i></a>
-                    <a href="https://www.instagram.com/chontzakis/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=100007415688420" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://github.com/Chontzakis" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
+  <!-- Neural Network Background -->
+  <canvas id="mlp-bg"></canvas>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <div class="sidebar-content">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="thesis.html">Thesis</a>
+      </div>
+      <div class="sidebar-footer">
+        <h3>Contact</h3>
+        <div class="social-icons">
+          <a href="mailto:dionysischontzakis@gmail.com" target="_blank"><i class="fa-regular fa-envelope"></i></a>
+          <a href="https://www.instagram.com/chontzakis/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100007415688420" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://github.com/Chontzakis" target="_blank"><i class="fab fa-github"></i></a>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Main Content with Menu Button Inside -->
-    <div id="main">
-        <button class="openbtn" onclick="toggleNav()">&#9776;</button>
-        
-        <header class="header">
-            <h1 class="fade-in">Dionysios Chontzakis</h1>
-            <p class="fade-in delay-1">Mathematician | Data Scientist | ML Enthusiast</p>
-        </header>
+  <!-- Main Content -->
+  <div id="main">
+    <button class="openbtn" onclick="toggleNav()">&#9776;</button>
+    
+    <header class="header">
+      <h1 class="fade-in">Dionysios Chontzakis</h1>
+      <p class="fade-in delay-1">Mathematician | Data Scientist | ML Enthusiast</p>
+    </header>
 
-        <!-- Rest of your content remains the same -->
-        <section class="about fade-in delay-2">
-            <h2>About Me</h2>
-            <p>I'm a Mathematician with a Master's in Data Science & Machine Learning.</p>
-            <p>I explore theoretical and practical applications of AI and statistical modeling.</p>
-        </section>
-    </div>
+    <section class="about fade-in delay-2">
+      <h2>About Me</h2>
+      <p>I'm a Mathematician with a Master's in Data Science & Machine Learning.</p>
+      <p>I explore theoretical and practical applications of AI and statistical modeling.</p>
+    </section>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
+
+  <!-- ⚡ Animated Edge Flow Background -->
+  <script>
+    const canvas = document.getElementById("mlp-bg");
+    const ctx = canvas.getContext("2d");
+    let W = innerWidth, H = innerHeight;
+    canvas.width = W; canvas.height = H;
+
+    window.addEventListener("resize", () => {
+      W = innerWidth; H = innerHeight;
+      canvas.width = W; canvas.height = H;
+    });
+
+    const layers = [4, 8, 8, 8, 6, 2];
+    const spacingX = W / (layers.length + 1);
+    const nodes = [];
+
+    for (let i = 0; i < layers.length; i++) {
+      const layer = [];
+      const spacingY = H / (layers[i] + 1);
+      for (let j = 0; j < layers[i]; j++) {
+        layer.push({ x: spacingX * (i + 1), y: spacingY * (j + 1) });
+      }
+      nodes.push(layer);
+    }
+
+    const edges = [];
+    for (let i = 0; i < nodes.length - 1; i++) {
+      for (let a of nodes[i]) {
+        for (let b of nodes[i + 1]) {
+          edges.push({ a, b, progress: 0 });
+        }
+      }
+    }
+
+    let activeLayer = 0;
+    let waveSpeed = 0.02; // speed of light travel along edge
+    let layerDelay = 120; // frames between layer activations (~2s)
+    let frameCount = 0;
+
+    function draw() {
+      ctx.fillStyle = "rgba(0,0,0,0.3)";
+      ctx.fillRect(0, 0, W, H);
+
+      // dim static edges
+      ctx.strokeStyle = "rgba(255,255,255,0.05)";
+      ctx.lineWidth = 1;
+      for (let e of edges) {
+        ctx.beginPath();
+        ctx.moveTo(e.a.x, e.a.y);
+        ctx.lineTo(e.b.x, e.b.y);
+        ctx.stroke();
+      }
+
+      // Update signal progress
+      for (let e of edges) {
+        // Only animate edges from the current active layer
+        if (nodes[activeLayer].includes(e.a) && nodes[activeLayer + 1].includes(e.b)) {
+          e.progress += waveSpeed;
+          if (e.progress > 1) e.progress = 1;
+
+          const x = e.a.x + (e.b.x - e.a.x) * e.progress;
+          const y = e.a.y + (e.b.y - e.a.y) * e.progress;
+
+          const grad = ctx.createLinearGradient(e.a.x, e.a.y, e.b.x, e.b.y);
+          grad.addColorStop(0, "rgba(125, 249, 255,0.1)");
+          grad.addColorStop(Math.max(0, e.progress - 0.1), "rgba(125, 249, 255,0.1)");
+          grad.addColorStop(e.progress, "rgba(125, 249, 255,0.1)");
+          grad.addColorStop(Math.min(1, e.progress + 0.1), "rgba(125, 249, 255,0)");
+          grad.addColorStop(1, "rgba(0,0,255,0)");
+
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(e.a.x, e.a.y);
+          ctx.lineTo(e.b.x, e.b.y);
+          ctx.stroke();
+        } else {
+          e.progress = 0;
+        }
+      }
+
+      // Light up nodes slightly in active layers
+      for (let i = 0; i < nodes.length; i++) {
+        for (let n of nodes[i]) {
+          const active = (i === activeLayer || i === activeLayer + 1);
+          const glow = active ? 0.8 : 0.3;
+          const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, 7);
+          grad.addColorStop(0, `rgba(150,150,150,${glow})`);
+          grad.addColorStop(1, "rgba(150,150,150,0)");
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, 5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+    frameCount++;
+    let allEdgesComplete = edges
+    .filter(e => nodes[activeLayer].includes(e.a) && nodes[activeLayer + 1].includes(e.b))
+    .every(e => e.progress >= 1);
+
+    if (allEdgesComplete) {
+    activeLayer++;
+    if (activeLayer >= nodes.length - 1) activeLayer = 0;
+
+    // reset progress for next layer
+    for (let e of edges) e.progress = 0;
+    }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
 </body>
 </html>
