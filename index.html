@@ -96,17 +96,29 @@
     function generateNodes() {
       nodes.length = 0;
       edges.length = 0;
+
+      const rotateMobile = W < 500; // rotate 90° on mobile
       const spacingX = W / (layers.length + 1);
+      const spacingY = H / (Math.max(...layers) + 1);
 
       for (let i = 0; i < layers.length; i++) {
         const layer = [];
-        const spacingY = H / (layers[i] + 1);
         for (let j = 0; j < layers[i]; j++) {
-          layer.push({ x: spacingX * (i + 1), y: spacingY * (j + 1) });
+          let x, y;
+          if (rotateMobile) {
+            // Rotate 90 degrees
+            x = spacingY * (j + 1);
+            y = spacingX * (i + 1);
+          } else {
+            x = spacingX * (i + 1);
+            y = H / (layers[i] + 1) * (j + 1);
+          }
+          layer.push({ x, y });
         }
         nodes.push(layer);
       }
 
+      // create edges
       for (let i = 0; i < nodes.length - 1; i++) {
         for (let a of nodes[i]) {
           for (let b of nodes[i + 1]) {
