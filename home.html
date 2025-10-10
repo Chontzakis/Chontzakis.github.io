@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="icon.png">
+  <title>Dionysios Chontzakis</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Background canvas */
+    #mlp-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      background: black;
+    }
+  </style>
+</head>
+<body>
+  <!-- Neural Network Background -->
+  <canvas id="mlp-bg"></canvas>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <div class="sidebar-content">
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="thesis.html">Thesis</a>
+      </div>
+      <div class="sidebar-footer">
+        <h3>Contact</h3>
+        <div class="social-icons">
+          <a href="mailto:dionysischontzakis@gmail.com" target="_blank"><i class="fa-regular fa-envelope"></i></a>
+          <a href="https://www.instagram.com/chontzakis/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100007415688420" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://github.com/Chontzakis" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main">
+    <button class="openbtn" onclick="toggleNav()">&#9776;</button>
+    
+    <header class="header">
+      <h1 class="fade-in">Dionysios Chontzakis</h1>
+      <p class="fade-in delay-1">Mathematician | Data Scientist | ML Enthusiast</p>
+    </header>
+
+    <section class="about fade-in delay-2">
+      <h2>About Me</h2>
+      <p>I'm a Mathematician with a Master's in Data Science & Machine Learning.</p>
+      <p>I explore theoretical and practical applications of AI and statistical modeling.</p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script src="background_home.js"></script>
+</body>
+</html>
