@@ -285,6 +285,31 @@ section {
     justify-content: center;
 }
 
+.pdf-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    min-width: 140px;
+    justify-content: center;
+    color: white !important; /* ADD THIS LINE - Force white text */
+}
+
+.view-button {
+    background-color: #3498db;
+    color: white !important; /* ADD THIS LINE */
+}
+
+.download-button {
+    background-color: #27ae60;
+    color: white !important; /* ADD THIS LINE */
+}
+
 .view-button {
     background-color: #3498db;
     color: white;
