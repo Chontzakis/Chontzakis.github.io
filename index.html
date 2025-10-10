@@ -101,17 +101,16 @@ function generateNodes() {
 
   if (rotateMobile) {
     const spacingX = H / (layers.length + 1); // vertical spacing of layers
-    const spacingY = W / (Math.max(...layers) + 1); // horizontal spacing for nodes
-
-    // Compute horizontal offset to center all nodes
-    const maxNodes = Math.max(...layers);
-    const totalWidth = spacingY * maxNodes;
-    const xOffset = (W - totalWidth) / 2;
 
     for (let i = 0; i < layers.length; i++) {
       const layer = [];
-      for (let j = 0; j < layers[i]; j++) {
-        const x = xOffset + spacingY * (j + 1); // center nodes horizontally
+      const numNodes = layers[i];
+      const spacingY = W / (numNodes + 1); // horizontal spacing for this layer
+      const layerWidth = spacingY * numNodes;
+      const xOffset = (W - layerWidth) / 2; // center nodes in this layer
+
+      for (let j = 0; j < numNodes; j++) {
+        const x = xOffset + spacingY * (j + 0.5); // center node inside layer spacing
         const y = spacingX * (i + 1);
         layer.push({ x, y });
       }
@@ -147,6 +146,7 @@ function generateNodes() {
     }
   }
 }
+
 
 
 
