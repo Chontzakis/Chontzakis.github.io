@@ -1,7 +1,7 @@
 const canvas = document.getElementById("mlp-bg");
 const ctx = canvas.getContext("2d");
 let W, H;
-let layers = [4, 8, 8, 8, 6, 2];
+let layers = [4, 8, 10, 8, 2];
 let nodes = [];
 const edges = [];
 let activeLayer = 0;
@@ -12,58 +12,47 @@ function resizeCanvas() {
     W = window.innerWidth;
     H = window.innerHeight;
 
-    const rotateMobile = W < 500; // we'll use this later
-
     // Adjust layers for small screens
-    layers = rotateMobile ? [2, 6, 7, 7, 6, 2] : [4, 6, 8, 8, 6, 2];
+    if (W < 500) {
+    layers = [3, 6, 7, 7, 6, 2];
+    }
 
     canvas.width = W * dpr;
     canvas.height = H * dpr;
     canvas.style.width = W + "px";
     canvas.style.height = H + "px";
-
-    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset any previous transforms
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(dpr, dpr);
 
-    // 💡 Rotate the entire coordinate system 90° on mobile
-    if (rotateMobile) {
-        ctx.translate(W, 0);
-        ctx.rotate(Math.PI / 2);
-    }
-
-    generateNodes(rotateMobile);
+    generateNodes();
 }
-
 
 window.addEventListener("resize", resizeCanvas);
 
-function generateNodes(rotateMobile = false) {
+function generateNodes() {
     nodes.length = 0;
     edges.length = 0;
 
-    const spacingX = (rotateMobile ? H : W) / (layers.length + 1);
-    const spacingY = (rotateMobile ? W : H) / (Math.max(...layers) + 1);
+    const rotateMobile = W < 500; // rotate 90° on mobile
+    const spacingX = W / (layers.length + 1);
+    const spacingY = H / (Math.max(...layers) + 1);
 
     for (let i = 0; i < layers.length; i++) {
-        const layer = [];
-        for (let j = 0; j < layers[i]; j++) {
-            const x = spacingX * (i + 1);
-            const y = spacingY * (j + 1);
-            layer.push({ x, y });
+    const layer = [];
+    for (let j = 0; j < layers[i]; j++) {
+        let x, y;
+        if (rotateMobile) {
+        // Rotate 90 degrees
+        x = spacingY * (j + 1);
+        y = spacingX * (i + 1);
+        } else {
+        x = spacingX * (i + 1);
+        y = H / (layers[i] + 1) * (j + 1);
         }
-        nodes.push(layer);
+        layer.push({ x, y });
     }
-
-    // create edges (same logic)
-    for (let i = 0; i < nodes.length - 1; i++) {
-        for (let a of nodes[i]) {
-            for (let b of nodes[i + 1]) {
-                edges.push({ a, b, progress: 0 });
-            }
-        }
+    nodes.push(layer);
     }
-}
-
 
     // create edges
     for (let i = 0; i < nodes.length - 1; i++) {
