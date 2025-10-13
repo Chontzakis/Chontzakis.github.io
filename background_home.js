@@ -30,38 +30,54 @@ function resizeCanvas() {
 window.addEventListener("resize", resizeCanvas);
 
 function generateNodes() {
-    nodes.length = 0;
-    edges.length = 0;
+  nodes.length = 0;
+  edges.length = 0;
 
-    const rotateMobile = W < 500; // rotate 90° on mobile
-    const spacingX = W / (layers.length + 1);
-    const spacingY = H / (Math.max(...layers) + 1);
+  const rotateMobile = W < 500;
+
+  if (rotateMobile) {
+    // === ROTATED (vertical) layout ===
+    const spacingY = H / (layers.length + 1); // vertical spacing between layers
+    const maxNodes = Math.max(...layers);
+    const spacingX = W / (maxNodes + 1); // horizontal spacing between nodes
+    const totalWidth = spacingX * maxNodes;
+    const xOffset = (W - totalWidth) / 2; // center horizontally
 
     for (let i = 0; i < layers.length; i++) {
-    const layer = [];
-    for (let j = 0; j < layers[i]; j++) {
-        let x, y;
-        if (rotateMobile) {
-        // Rotate 90 degrees
-        x = spacingY * (j + 1);
-        y = spacingX * (i + 1);
-        } else {
-        x = spacingX * (i + 1);
-        y = H / (layers[i] + 1) * (j + 1);
-        }
+      const layer = [];
+      const nodesInLayer = layers[i];
+      const layerWidth = spacingX * nodesInLayer;
+      const layerXOffset = (W - layerWidth) / 2; // center nodes of each layer
+
+      for (let j = 0; j < nodesInLayer; j++) {
+        const x = layerXOffset + spacingX * (j + 1);
+        const y = spacingY * (i + 1); // vertical position = layer index
         layer.push({ x, y });
-    }
-    nodes.push(layer);
+      }
+      nodes.push(layer);
     }
 
-    // create edges
-    for (let i = 0; i < nodes.length - 1; i++) {
+  } else {
+    // === NORMAL (horizontal) layout ===
+    const spacingX = W / (layers.length + 1);
+    for (let i = 0; i < layers.length; i++) {
+      const layer = [];
+      const spacingY = H / (layers[i] + 1);
+      for (let j = 0; j < layers[i]; j++) {
+        layer.push({ x: spacingX * (i + 1), y: spacingY * (j + 1) });
+      }
+      nodes.push(layer);
+    }
+  }
+
+  // === Create edges ===
+  for (let i = 0; i < nodes.length - 1; i++) {
     for (let a of nodes[i]) {
-        for (let b of nodes[i + 1]) {
+      for (let b of nodes[i + 1]) {
         edges.push({ a, b, progress: 0 });
-        }
+      }
     }
-    }
+  }
 }
 
 function draw() {
