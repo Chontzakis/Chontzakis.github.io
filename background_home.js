@@ -15,7 +15,7 @@ function resizeCanvas() {
     const rotateMobile = W < 500; // we'll use this later
 
     // Adjust layers for small screens
-    layers = rotateMobile ? [3, 6, 7, 7, 6, 2] : [4, 6, 8, 8, 6, 2];
+    layers = rotateMobile ? [2, 6, 7, 7, 6, 2] : [4, 6, 8, 8, 6, 2];
 
     canvas.width = W * dpr;
     canvas.height = H * dpr;
