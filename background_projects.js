@@ -9,8 +9,8 @@ window.addEventListener('resize', () => {
   height = canvas.height = window.innerHeight;
 });
 
-const NUM_NODES = 100;      // number of nodes
-const MAX_DISTANCE = 120;   // max distance to draw a line
+const NUM_NODES = width * 0.2;      // number of nodes
+const MAX_DISTANCE = width * 0.08;   // max distance to draw a line
 const nodes = [];
 
 class Node {
