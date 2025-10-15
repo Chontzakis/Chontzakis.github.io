@@ -10,7 +10,7 @@ window.addEventListener('resize', () => {
 });
 
 const NUM_NODES = width * 0.2;      // number of nodes
-const MAX_DISTANCE = width * 0.08;   // max distance to draw a line
+const MAX_DISTANCE = width * 0.1;   // max distance to draw a line
 const nodes = [];
 
 class Node {
