@@ -33,7 +33,7 @@ function generateNodes() {
   nodes.length = 0;
   edges.length = 0;
 
-  const rotateMobile = W < 500;
+  const rotateMobile = W < H;
 
   if (rotateMobile) {
     // === ROTATED (vertical) layout ===
