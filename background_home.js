@@ -49,11 +49,12 @@ function generateNodes() {
       const layerWidth = spacingX * nodesInLayer;
       const layerXOffset = (W - layerWidth) / 2; // center nodes of each layer
 
-      for (let j = 0; j < nodesInLayer; j++) {
-        const x = layerXOffset + spacingX * (j + 1);
-        const y = spacingY * (i + 1); // vertical position = layer index
-        layer.push({ x, y });
-      }
+    for (let j = 0; j < nodesInLayer; j++) {
+      const x = xOffset + layerXOffset + spacingX * (j + 1);
+      const y = spacingY * (i + 1);
+      layer.push({ x, y });
+    }
+
       nodes.push(layer);
     }
 
