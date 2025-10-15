@@ -307,6 +307,17 @@ section {
     box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
 }
 
+.code-button {
+    background-color: #d87f2c;
+    color: white;
+}
+
+.code-button:hover {
+        background-color: #c76a14;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
+}
+
 .pdf-button i {
     font-size: 1rem;
 }

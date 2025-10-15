@@ -7,8 +7,20 @@
   <title>Dionysios Chontzakis</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+    /* Background canvas */
+    #background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      background: black;
+    }
+  </style>
 </head>
 <body>
+    <canvas id="background"></canvas>
+
     <!-- Sidebar -->
     <div id="mySidebar" class="sidebar">
         <div class="sidebar-content">
@@ -41,29 +53,81 @@
         </header>
         <section class="projects fade-in delay-1">
             <div class="project-card" >
-                <h3>Social Network Analysis</h3>
-                <a href="https://colab.research.google.com/drive/1iy2AzmN9l4TsPNNdSeOWSBj_zEhJg07Y#scrollTo=7ZrkO5dHPfrH" target="_blank" class="project-link">
-                    <p>Analysis & Study of Complex Network Topologies</p>
-                </a>
-                <a href="https://colab.research.google.com/drive/1fSwJU4RfbqOI_H71y31trwbFwugbwkIL" target="_blank" class="project-link">
-                    <p>Analysis of Social Structure in Artificial and Real-World Complex Network Topologies</p>
-                </a>
-                <a href="https://colab.research.google.com/drive/1UulfO1cmIhSYXeYWfJwPHnzmbTWQYSQL" target="_blank" class="project-link">
-                    <p>Link Prediction</p>
-                </a>
+                <h2>Social Network Analysis</h2>
+
+                <h3>Analysis & Study of Complex Network Topologies</h3>
+                <!-- <div class="button-group centered">
+                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>View PDF</span>
+                    </a>
+                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button code-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Code</span>
+                    </a>
+                </div> -->
+                <p>(Not yet uploaded)</p>
+
+                <h3>Analysis of Social Structure in Artificial and Real-World Complex Network Topologies</h3>
+                <!-- <div class="button-group centered">
+                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>View PDF</span>
+                    </a>
+                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button code-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Code</span>
+                    </a>                     
+                </div> -->
+                <p>(Not yet uploaded)</p>
+
+                <h3>Link Prediction</h3>
+                <!-- <div class="button-group centered">
+                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>View PDF</span>
+                    </a>
+                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button code-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Code</span>
+                    </a>
+                </div> -->
+                <p>(Not yet uploaded)</p>
             </div>
             <div class="project-card fade-in delay-2">
-                <h3>Machine Learning</h3>
-                <a href="https://colab.research.google.com/drive/1wsXz6bCWaRCG5PthgXiGALI4avTjvpKj" target="_blank" class="project-link">
-                    <p>Data Preparation and Classification</p>
-                </a>
-                <a href="https://colab.research.google.com/drive/1fSwJU4RfbqOI_H71y31trwbFwugbwkIL" target="_blank" class="project-link">
-                    <p>Clustering</p>
-                </a>
+                <h2>Machine Learning</h2>
+
+                <h3>Data Preparation and Classification</h3>
+                <!-- <div class="button-group centered">
+                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>View PDF</span>
+                    </a>
+                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button code-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Code</span>
+                    </a>
+                </div> -->
+                <p>(Not yet uploaded)</p>
+
+                
+                <h3>Clustering</h3>
+                <!-- <div class="button-group centered">
+                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>View PDF</span>
+                    </a>
+                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button code-button">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Code</span>
+                    </a>
+                </div> -->
+                <p>(Not yet uploaded)</p>
             </div>
         </section>
     </div>
 
     <script src="script.js"></script>
+      <script src="background_projects.js"></script>
 </body>
 </html>
