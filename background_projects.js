@@ -17,9 +17,9 @@ const rotateMobile = width < 500;
 let  MAX_DISTANCE;   // max distance to draw a line
 
 if (rotateMobile) {
-    MAX_DISTANCE = width * 0.1;
+    MAX_DISTANCE = width * 0.1 + height * 0.1;
 } else {
-    MAX_DISTANCE = width * 0.7;
+    MAX_DISTANCE = width * 0.05 + height * 0.05;
 }
 
 class Node {
