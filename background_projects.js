@@ -10,8 +10,17 @@ window.addEventListener('resize', () => {
 });
 
 const NUM_NODES = width * 0.2;      // number of nodes
-const MAX_DISTANCE = width * 0.1;   // max distance to draw a line
 const nodes = [];
+
+const rotateMobile = width < 500;
+
+let  MAX_DISTANCE;   // max distance to draw a line
+
+if (rotateMobile) {
+    MAX_DISTANCE = width * 0.3;
+} else {
+    MAX_DISTANCE = width * 0.1;
+}
 
 class Node {
   constructor() {
@@ -51,7 +60,7 @@ function animate() {
       const dy = nodes[i].y - nodes[j].y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist < MAX_DISTANCE) {
+      if (dist < MAX_DISTANCE)  {
         ctx.beginPath();
         ctx.strokeStyle = `rgba(255, 255, 255, ${1 - dist / MAX_DISTANCE})`;
         ctx.lineWidth = 1;
