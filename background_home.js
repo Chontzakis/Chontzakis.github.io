@@ -13,7 +13,7 @@ function resizeCanvas() {
     H = window.innerHeight;
 
     // Adjust layers for small screens
-    if (W < 500) {
+    if (W < H) {
     layers = [4, 8, 8, 2];
     }
 
