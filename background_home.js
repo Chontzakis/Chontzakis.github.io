@@ -14,7 +14,7 @@ function resizeCanvas() {
 
     // Adjust layers for small screens
     if (W < 500) {
-    layers = [3, 8, 8, 2];
+    layers = [4, 8, 8, 2];
     }
 
     canvas.width = W * dpr;
