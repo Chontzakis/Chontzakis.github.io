@@ -9,7 +9,7 @@ window.addEventListener('resize', () => {
   height = canvas.height = window.innerHeight;
 });
 
-const NUM_NODES = width * 0.2;      // number of nodes
+const NUM_NODES = width * 0.1 + height * 0.1;      // number of nodes
 const nodes = [];
 
 const rotateMobile = width < 500;
