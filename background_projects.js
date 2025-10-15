@@ -9,16 +9,18 @@ window.addEventListener('resize', () => {
   height = canvas.height = window.innerHeight;
 });
 
-const NUM_NODES = width * 0.1 + height * 0.1;      // number of nodes
 const nodes = [];
 
 const rotateMobile = width < 500;
 
-let  MAX_DISTANCE;   // max distance to draw a line
+let MAX_DISTANCE;   // max distance to draw a line
+let NUM_NODES;      // number of nodes
 
 if (rotateMobile) {
+    NUM_NODES = width * 0.1 + height * 0.1;
     MAX_DISTANCE = width * 0.1 + height * 0.1;
 } else {
+    NUM_NODES = width * 0.05 + height * 0.05;
     MAX_DISTANCE = width * 0.05 + height * 0.05;
 }
 
