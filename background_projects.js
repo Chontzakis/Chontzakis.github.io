@@ -17,10 +17,10 @@ let MAX_DISTANCE;   // max distance to draw a line
 let NUM_NODES;      // number of nodes
 
 if (rotateMobile) {
-    NUM_NODES = width * 0.1 + height * 0.1;
+    NUM_NODES = 100;
     MAX_DISTANCE = width * 0.1 + height * 0.1;
 } else {
-    NUM_NODES = width * 0.05 + height * 0.05;
+    NUM_NODES = 200;
     MAX_DISTANCE = width * 0.05 + height * 0.05;
 }
 
