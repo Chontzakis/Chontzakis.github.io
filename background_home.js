@@ -1,7 +1,7 @@
 const canvas = document.getElementById("mlp-bg");
 const ctx = canvas.getContext("2d");
 let W, H;
-let layers = [4, 8, 10, 8, 2];
+let layers;
 let nodes = [];
 const edges = [];
 let activeLayer = 0;
@@ -15,6 +15,8 @@ function resizeCanvas() {
     // Adjust layers for small screens
     if (W < H) {
     layers = [4, 8, 8, 2];
+    } else {
+    layers = [4, 8, 10, 8, 2];
     }
 
     canvas.width = W * dpr;
