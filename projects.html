@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="icon.png">
-  <title>Dionysios Chontzakis</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Dionysios Chontzakis · Projects</title>
+  <!-- Font Awesome & existing stylesheet -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css"> 
+  
     <style>
     /* Background canvas */
-    #background {
+    #background-projects {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
@@ -19,115 +21,131 @@
   </style>
 </head>
 <body>
-    <canvas id="background"></canvas>
+  <canvas id="background-projects"></canvas>
 
-    <!-- Sidebar -->
-    <div id="mySidebar" class="sidebar">
-        <div class="sidebar-content">
-            <!-- Navigation Links -->
-            <div class="nav-links">
-                <a href="home.html">Home</a>
-                <a href="projects.html">Projects</a>
-                <a href="thesis.html">Thesis</a>
-            </div>
-            
-            <!-- Social Media Section at Bottom -->
-            <div class="sidebar-footer">
-                <h3>Contact</h3>
-                <div class="social-icons">
-                    <a href="mailto:dionysischontzakis@gmail.com" target="_blank" aria-label="Gmail"><i class="fa-regular fa-envelope"></i></a>
-                    <a href="https://www.instagram.com/chontzakis/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=100007415688420" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://github.com/Chontzakis" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <div class="sidebar-content">
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="thesis.html">Thesis</a>
+      </div>
+      <div class="sidebar-footer">
+        <h3>Contact</h3>
+        <div class="social-icons">
+          <a href="mailto:dionysischontzakis@gmail.com" target="_blank"><i class="fa-regular fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/dionysios-chontzakis-b540023b0/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/Chontzakis" target="_blank"><i class="fab fa-github"></i></a>
         </div>
+      </div>
     </div>
+  </div>
 
-<!-- Projects Section -->
-    <div id="main">
-        <button class="openbtn" onclick="toggleNav()">&#9776;</button>
-        
-        <header class="header">
-            <h1>Projects</h1>
-        </header>
-        <section class="projects fade-in delay-1">
-            <div class="project-card" >
-                <h2>Social Network Analysis</h2>
+  <!-- Main content -->
+  <div id="main">
+    <button class="openbtn" onclick="toggleNav()">&#9776;</button>
 
-                <h3>Analysis & Study of Complex Network Topologies</h3>
-                <!-- <div class="button-group centered">
-                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>View PDF</span>
-                    </a>
-                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button code-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>Code</span>
-                    </a>
-                </div> -->
-                <p>(Not yet uploaded)</p>
+    <header class="header">
+      <h1>Projects</h1>
+    </header>
 
-                <h3>Analysis of Social Structure in Artificial and Real-World Complex Network Topologies</h3>
-                <!-- <div class="button-group centered">
-                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>View PDF</span>
-                    </a>
-                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button code-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>Code</span>
-                    </a>                     
-                </div> -->
-                <p>(Not yet uploaded)</p>
+    <!-- PROJECTS GRID – now 2 columns, n rows -->
+    <section class="projects fade-in delay-1">
 
-                <h3>Link Prediction</h3>
-                <!-- <div class="button-group centered">
-                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>View PDF</span>
-                    </a>
-                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button code-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>Code</span>
-                    </a>
-                </div> -->
-                <p>(Not yet uploaded)</p>
-            </div>
-            <div class="project-card fade-in delay-2">
-                <h2>Machine Learning</h2>
+      <div class="project-card">
+        <h2>Social Network Analysis</h2>
+        <h3>Analysis & Study of Complex Network Topologies</h3>
+            <a href="SNA_1.pdf" target="_blank" class="pdf-button view-button">
+                <i class="fas fa-external-link-alt"></i>
+                    <span>View Report</span>
+            </a>
+            <a href="notebook.ipynb" download="notebook.ipynb" class="pdf-button download-button">
+                <i class="fas fa-download"></i>
+                    <span>Download Notebook</span>
+            </a>
+        <h3>Analysis of Social Structure in Artificial and Real-World Complex Network Topologies</h3>
+        <p>(Not yet uploaded)</p>
+        <h3>Link Prediction</h3>
+        <p>(Not yet uploaded)</p>
+      </div>
 
-                <h3>Data Preparation and Classification</h3>
-                <!-- <div class="button-group centered">
-                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>View PDF</span>
-                    </a>
-                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button code-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>Code</span>
-                    </a>
-                </div> -->
-                <p>(Not yet uploaded)</p>
+      <!-- existing card 2: Machine Learning -->
+      <div class="project-card">
+        <h2>Machine Learning</h2>
+        <h3>Data Preparation and Classification</h3>
+        <p>(Not yet uploaded)</p>
+        <h3>Clustering</h3>
+        <p>(Not yet uploaded)</p>
+      </div>
 
-                
-                <h3>Clustering</h3>
-                <!-- <div class="button-group centered">
-                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>View PDF</span>
-                    </a>
-                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button code-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>Code</span>
-                    </a>
-                </div> -->
-                <p>(Not yet uploaded)</p>
-            </div>
-        </section>
-    </div>
+      <!-- NEW CARD 3: Deep Learning (placeholder) -->
+      <div class="project-card fade-in delay-2">
+        <h2>Deep Learning</h2>
+        <h3>CNN for Image Recognition</h3>
+        <p>(Not yet uploaded)</p>
+        <h3>RNN for Time Series</h3>
+        <p>(Not yet uploaded)</p>
+      </div>
 
-    <script src="script.js"></script>
-      <script src="background_projects.js"></script>
+      <!-- NEW CARD 4: Natural Language Processing (placeholder) -->
+      <div class="project-card fade-in delay-1">
+        <h2>Natural Language Processing</h2>
+        <h3>Sentiment Analysis on Social Media</h3>
+        <p>(Not yet uploaded)</p>
+        <h3>Topic Modeling with BERT</h3>
+        <p>(Not yet uploaded)</p>
+      </div>
+
+      <!-- NEW CARD 5: Computer Vision (placeholder) -->
+      <div class="project-card fade-in delay-2">
+        <h2>Computer Vision</h2>
+        <h3>Object Detection in Satellite Imagery</h3>
+        <p>(Not yet uploaded)</p>
+        <h3>Image Segmentation for Medical Scans</h3>
+        <p>(Not yet uploaded)</p>
+      </div>
+
+      <!-- NEW CARD 6: Reinforcement Learning (placeholder) -->
+      <div class="project-card fade-in delay-1">
+        <h2>Reinforcement Learning</h2>
+        <h3>DQN for Game Playing</h3>
+        <p>(Not yet uploaded)</p>
+        <h3>Policy Gradients in Robotics</h3>
+        <p>(Not yet uploaded)</p>
+      </div>
+
+      <!-- you can add as many cards as needed – they will automatically arrange in rows of two -->
+
+    </section>
+  </div>
+
+  <!-- scripts (unchanged) -->
+  <script src="script.js"></script>
+  <script src="background_projects.js"></script>
+
+  <!-- tiny inline script for sidebar toggle (if not already in script.js) -->
+  <script>
+    function toggleNav() {
+      const sidebar = document.getElementById("mySidebar");
+      const main = document.getElementById("main");
+      if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+        main.style.marginLeft = "0";
+      } else {
+        sidebar.style.width = "250px";
+        main.style.marginLeft = "250px";
+      }
+    }
+    // In case you want to close sidebar when clicking outside (optional)
+    window.addEventListener('click', function(e) {
+      const sidebar = document.getElementById("mySidebar");
+      const btn = document.querySelector('.openbtn');
+      if (!sidebar.contains(e.target) && !btn.contains(e.target) && sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+    });
+  </script>
 </body>
 </html>

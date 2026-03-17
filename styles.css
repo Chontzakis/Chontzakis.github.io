@@ -1,3 +1,4 @@
+/* ========== YOUR ORIGINAL STYLES (PRESERVED) ========== */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -22,71 +23,47 @@ p {
   text-align: center;
 }
 
-
 header {
   padding: 5vh 2rem;
   text-align: center;
 }
 
+/* generic section – will be overridden for .projects */
 section {
   padding: 5vh 2rem;
   max-width: 800px;
   margin: auto;
 }
 
-.project-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.project-card {
-  background: #222;
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  background: #2a2a2a;
-}
-
+/* social icons (unchanged) */
 .social-icons {
   margin-top: 1rem;
 }
-
 .social-icons a {
   color: #eee;
   margin-right: 15px;
   font-size: 1.5rem;
   transition: color 0.3s;
 }
-
 .social-icons a:hover {
   color: #1da1f2;
 }
 
-/* Animations */
+/* Animations (unchanged) */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeIn 1s ease-out forwards;
 }
-
 .delay-1 { animation-delay: 0.4s; }
 .delay-2 { animation-delay: 0.8s; }
 .delay-3 { animation-delay: 1.2s; }
 .delay-4 { animation-delay: 1.6s; }
-
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  to { opacity: 1; transform: none; }
 }
 
-/* The sidebar - Fixed height calculation */
+/* ========== SIDEBAR (UNCHANGED) ========== */
 .sidebar {
     height: 100%; 
     width: 0;
@@ -100,22 +77,16 @@ section {
     border-radius: 0 20px 20px 0;
     box-shadow: 2px 0 10px rgba(255, 255, 255, 0.3);
 }
-
-/* Sidebar content wrapper */
 .sidebar-content {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
-
-/* Navigation links section */
 .nav-links {
     flex: 1;
     padding-top: 60px; 
     overflow-y: auto;
 }
-
-/* The sidebar links */
 .sidebar a {
     padding: 12px 8px 12px 32px;
     text-decoration: none;
@@ -125,39 +96,30 @@ section {
     transition: 0.3s;
     border-left: 3px solid transparent;
 }
-
-/* When you mouse over the navigation links, change their color */
 .sidebar a:hover {
     color: #7dcdff;
     background-color: rgba(255, 255, 255, 0.05);
     border-left-color: #7dcdff;
 }
-
-/* Sidebar footer for social media - Fixed positioning */
 .sidebar-footer {
     padding: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: auto; /* Push to bottom */
+    margin-top: auto;
     text-align: center;
-    flex-shrink: 0; /* Prevent footer from shrinking */
+    flex-shrink: 0;
 }
-
 .sidebar-footer h3 {
     color: #ffffff;
     font-size: 18px;
     margin-bottom: 20px;
     text-align: center;
 }
-
-/* Horizontal social icons with proper spacing */
 .sidebar .social-icons {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    /* padding: 0 10px; */
     margin-bottom: 60px;
 }
-
 .sidebar .social-icons a {
     display: flex;
     align-items: center;
@@ -172,16 +134,13 @@ section {
     padding: 0;
     border-left: none;
     flex-shrink: 0;
-    font-size: 18px; /* Ensure icon size is proper */
+    font-size: 18px;
 }
-
 .sidebar .social-icons a:hover {
     background-color: #7dcdff;
     color: #202020;
     transform: translateY(-2px);
 }
-
-/* The button used to open the sidebar */
 .openbtn {
     border-radius: 20px;
     font-size: 20px;
@@ -193,51 +152,25 @@ section {
     margin: 20px;
     transition: background-color 0.3s;
 }
-
 .openbtn:hover {
     background-color: #444;
 }
-
-/* Style page content */
 #main {
     transition: margin-left 1s;
     padding: 0;
 }
-
-/* On smaller screens */
 @media screen and (max-height: 450px) {
-    .sidebar-content {
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-    .sidebar a {
-        font-size: 18px;
-    }
-    .sidebar-footer {
-        padding: 15px;
-    }
+    .sidebar-content { padding-top: 15px; padding-bottom: 15px; }
+    .sidebar a { font-size: 18px; }
+    .sidebar-footer { padding: 15px; }
 }
-
-/* Mobile responsiveness */
 @media screen and (max-width: 768px) {
-    .sidebar .social-icons {
-        gap: 8px;
-        padding: 0 5px;
-    }
-    
-    .sidebar .social-icons a {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-    
-    .sidebar-footer h3 {
-        font-size: 16px;
-    }
+    .sidebar .social-icons { gap: 8px; padding: 0 5px; }
+    .sidebar .social-icons a { width: 40px; height: 40px; font-size: 16px; }
+    .sidebar-footer h3 { font-size: 16px; }
 }
 
-
-/* Thesis Version Sections */
+/* ========== THESIS SECTIONS (UNCHANGED) ========== */
 .version-section {
     margin-bottom: 2rem;
     padding: 1.5rem;
@@ -245,32 +178,25 @@ section {
     border-radius: 10px;
     border-left: 4px solid #3498db;
 }
-
 .version-section.centered {
     text-align: center;
     border-left: none;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .version-section h3 {
     margin-bottom: 1.5rem;
     color: #d4d4d4;
     font-size: 1.3rem;
 }
-
-/* Button Group */
 .button-group {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
 }
-
 .button-group.centered {
     justify-content: center;
     align-items: center;
 }
-
-/* PDF Buttons */
 .pdf-button {
     display: inline-flex;
     align-items: center;
@@ -284,67 +210,118 @@ section {
     min-width: 140px;
     justify-content: center;
 }
-
 .view-button {
     background-color: #3498db;
     color: white;
 }
-
 .view-button:hover {
     background-color: #2980b9;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
 }
-
 .download-button {
     background-color: #27ae60;
     color: white;
 }
-
 .download-button:hover {
     background-color: #219a52;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
 }
-
 .code-button {
     background-color: #d87f2c;
     color: white;
 }
-
 .code-button:hover {
-        background-color: #c76a14;
+    background-color: #c76a14;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
 }
-
 .pdf-button i {
     font-size: 1rem;
 }
-
-/* Center the main title */
-.projects h2 {
-    text-align: center;
-    margin-bottom: 2rem;
+@media (max-width: 768px) {
+    .button-group { flex-direction: column; align-items: center; }
+    .pdf-button { width: 200px; justify-content: center; }
+    .version-section { padding: 1rem; }
+    .button-group.centered { flex-direction: column; }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .button-group {
-        flex-direction: column;
-        align-items: center;
+/* ========== NEW PROJECTS GRID & CARD STYLES ========== */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* n by 2 grid */
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;          /* centers the grid horizontally */
+}
+
+/* override generic section max-width for projects only */
+.projects {
+    max-width: 1400px;
+}
+
+/* project cards – refined design with better contrast and spacing */
+.project-card {
+    background: rgba(25, 25, 35, 0.9);  /* slightly darker, less transparent */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px); /* Safari support */
+    border-radius: 1.5rem;
+    padding: 2rem 2rem;
+    box-shadow: 0 20px 30px -10px rgba(0,0,0,0.7);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #f0f0f0;
+    height: fit-content;
+    margin: 0;            
+    text-align: center;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 40px -12px rgba(0,0,0,0.9);
+    border-color: rgba(255,215,0,0.4);
+    background: rgba(30, 30, 40, 0.95);
+}
+
+.project-card h2 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    border-bottom: 2px solid goldenrod;
+    display: inline-block;    /* border only under text */
+    padding-bottom: 0.3rem;
+    color: #fff;
+    /* text-align is already centered from global h2 */
+}
+
+.project-card h3 {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 0.5rem;
+    color: #ddd;
+    font-weight: 500;
+}
+
+.project-card p {
+    color: #bbb;
+    font-style: italic;
+    margin: 0.5rem 0 1.2rem;
+    font-size: 0.95rem;
+}
+
+/* responsive: switch to one column on narrow screens */
+@media (max-width: 700px) {
+    .projects {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
     }
-    
-    .pdf-button {
-        width: 200px;
-        justify-content: center;
+    .project-card {
+        padding: 1.5rem;
     }
-    
-    .version-section {
-        padding: 1rem;
-    }
-    
-    .button-group.centered {
-        flex-direction: column;
+    .project-card h2 {
+        font-size: 1.8rem;
     }
 }

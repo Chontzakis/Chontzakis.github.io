@@ -1,4 +1,4 @@
-const canvas = document.getElementById('background');
+const canvas = document.getElementById('background-projects');
 const ctx = canvas.getContext('2d');
 
 function resizeCanvas() {
@@ -15,7 +15,7 @@ function resizeCanvas() {
   height = window.innerHeight;
 
   // Recalculate distances and node count for mobile
-  const rotateMobile = width < 500;
+  const rotateMobile = width < height;
   if (rotateMobile) {
     NUM_NODES = 100;
     MAX_DISTANCE = width * 0.1 + height * 0.1;

@@ -1,4 +1,4 @@
-const canvas = document.getElementById("mlp-bg");
+const canvas = document.getElementById("background-home");
 const ctx = canvas.getContext("2d");
 let W, H;
 let layers;
@@ -39,17 +39,17 @@ function generateNodes() {
 
   if (rotateMobile) {
     // === ROTATED (vertical) layout ===
-    const spacingY = H / (layers.length + 1); // vertical spacing between layers
+    const spacingY = H / (layers.length + 1); 
     const maxNodes = Math.max(...layers);
-    const spacingX = W / (maxNodes + 1); // horizontal spacing between nodes
+    const spacingX = W / (maxNodes + 1);
     const totalWidth = spacingX * maxNodes;
-    const xOffset = (W - totalWidth) / 2; // center horizontally
+    const xOffset = (W - totalWidth) / 2; 
 
     for (let i = 0; i < layers.length; i++) {
       const layer = [];
       const nodesInLayer = layers[i];
       const layerWidth = spacingX * nodesInLayer;
-      const layerXOffset = (W - layerWidth) / 2; // center nodes of each layer
+      const layerXOffset = (W - layerWidth) / 2; 
 
     for (let j = 0; j < nodesInLayer; j++) {
       const x = - xOffset + layerXOffset + spacingX * (j + 1);
@@ -86,7 +86,7 @@ function generateNodes() {
 let lastTime = performance.now();
 
 function draw(time = performance.now()) {
-  const delta = (time - lastTime) / 3000; // seconds since last frame
+  const delta = (time - lastTime) / 3000; 
   lastTime = time;
 
   ctx.fillStyle = "rgba(0,0,0,0.3)";
@@ -105,7 +105,7 @@ function draw(time = performance.now()) {
   // update signal progress with time delta
   for (let e of edges) {
     if (nodes[activeLayer].includes(e.a) && nodes[activeLayer + 1].includes(e.b)) {
-      e.progress += waveSpeed * delta * 60; // normalize to 60 FPS baseline
+      e.progress += waveSpeed * delta * 60; 
       if (e.progress > 1) e.progress = 1;
 
       const grad = ctx.createLinearGradient(e.a.x, e.a.y, e.b.x, e.b.y);
