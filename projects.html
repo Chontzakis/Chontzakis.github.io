@@ -16,12 +16,19 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: -1;
-      background: black;
+      background: transparent;
     }
   </style>
 </head>
 <body>
   <canvas id="background-projects"></canvas>
+  
+  <!-- Theme toggle button -->
+  <div class="theme-toggle-wrapper">
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Switch theme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
 
   <!-- Sidebar -->
   <div id="mySidebar" class="sidebar">
