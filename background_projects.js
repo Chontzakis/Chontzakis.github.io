@@ -1,20 +1,36 @@
 const canvas = document.getElementById('background-projects');
 const ctx = canvas.getContext('2d');
 
+let width, height, NUM_NODES, MAX_DISTANCE;
+let currentTheme = "dark";
+
+const colors = {
+  dark: {
+    nodeFill: "#ffffff",
+    edgeStroke: "rgba(255, 255, 255, "
+  },
+  light: {
+    nodeFill: "#2c3e50",
+    edgeStroke: "rgba(40, 60, 90, "
+  }
+};
+
+function getColors() {
+  return currentTheme === "light" ? colors.light : colors.dark;
+}
+
 function resizeCanvas() {
-  // Handle device pixel ratio
   const dpr = window.devicePixelRatio || 1;
   canvas.width = window.innerWidth * dpr;
   canvas.height = window.innerHeight * dpr;
   canvas.style.width = window.innerWidth + 'px';
   canvas.style.height = window.innerHeight + 'px';
-  ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.scale(dpr, dpr);
 
   width = window.innerWidth;
   height = window.innerHeight;
 
-  // Recalculate distances and node count for mobile
   const rotateMobile = width < height;
   if (rotateMobile) {
     NUM_NODES = 100;
@@ -23,10 +39,10 @@ function resizeCanvas() {
     NUM_NODES = 200;
     MAX_DISTANCE = width * 0.05 + height * 0.05;
   }
+
+  initNodes();
 }
 
-let width, height, NUM_NODES, MAX_DISTANCE;
-resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 const nodes = [];
@@ -47,23 +63,24 @@ class Node {
   }
 
   draw() {
+    const col = getColors();
     ctx.beginPath();
     ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = col.nodeFill;
     ctx.fill();
   }
 }
 
-// Initialize nodes
 function initNodes() {
   nodes.length = 0;
   for (let i = 0; i < NUM_NODES; i++) nodes.push(new Node());
 }
-initNodes();
 
-// Animation loop
 function animate() {
+  // Clear to fully transparent (not black)
   ctx.clearRect(0, 0, width, height);
+  
+  const col = getColors();
 
   // Draw connections
   for (let i = 0; i < nodes.length; i++) {
@@ -74,7 +91,8 @@ function animate() {
 
       if (dist < MAX_DISTANCE) {
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - dist / MAX_DISTANCE})`;
+        const opacity = 1 - dist / MAX_DISTANCE;
+        ctx.strokeStyle = col.edgeStroke + opacity + ")";
         ctx.lineWidth = 1;
         ctx.moveTo(nodes[i].x, nodes[i].y);
         ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -91,4 +109,12 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
+// Listen for theme changes (must be dispatched by script.js)
+window.addEventListener('themeChanged', (e) => {
+  currentTheme = e.detail.isLight ? "light" : "dark";
+  // No need to reinit – colors will update on next frame
+});
+
+// Start everything
+resizeCanvas();
 animate();
