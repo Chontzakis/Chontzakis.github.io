@@ -429,25 +429,32 @@ body.light-theme .header h1 {
 }
 
 @media (max-width: 700px) {
-  .project-card .button-group {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .project-card .pdf-button {
-    width: 100%;
-    margin: 0;
-  }
-    .nav-container {
-    gap: 1rem; /* adds space between grid columns */
-  }
-  
-  /* Optionally reduce social icon gap and font size further */
-  .social-nav {
-    gap: 0.5rem;
-  }
-  
-  .nav-links {
+  /* Keep nav container as grid, but align items to the top */
+  .nav-container {
+    grid-template-columns: auto 1fr auto;
     gap: 1rem;
+    align-items: start;  /* prevents center items from being pushed down */
+  }
+
+  /* Stack social icons vertically */
+  .social-nav {
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-self: start;
+  }
+
+  /* Ensure nav links and theme toggle stay at the top */
+  .nav-links {
+    align-self: start;
+  }
+
+  .theme-toggle-btn {
+    align-self: start;
+  }
+
+  /* Optional: reduce icon size */
+  .nav-social-icon {
+    font-size: 1.2rem;
   }
 }
 
