@@ -459,19 +459,31 @@ body.light-theme .header h1 {
 }
 
 @media (max-width: 480px) {
+  /* Keep nav container as grid, but align items to the top */
   .nav-container {
+    grid-template-columns: auto 1fr auto;
     gap: 0.75rem;
+    align-items: start;  /* prevents center items from being pushed down */
   }
+
+  /* Stack social icons vertically */
   .social-nav {
+    flex-direction: column;
     gap: 0.4rem;
+    justify-self: start;
   }
+
+  /* Ensure nav links and theme toggle stay at the top */
   .nav-links {
-    gap: 0.75rem;
+    align-self: start;
   }
+
+  .theme-toggle-btn {
+    align-self: start;
+  }
+
+  /* Optional: reduce icon size */
   .nav-social-icon {
     font-size: 1rem;
-  }
-  .nav-link {
-    font-size: 0.85rem;
   }
 }
