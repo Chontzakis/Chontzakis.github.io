@@ -413,3 +413,28 @@ body.light-theme .header h1 {
   word-break: break-word;
   max-width: 100%;
 }
+
+/* Improve button spacing inside project cards */
+.project-card .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.project-card .pdf-button {
+  min-width: 160px; /* slightly wider for better touch targets */
+  flex: 1 0 auto;   /* allow buttons to grow but not shrink too much */
+}
+
+@media (max-width: 500px) {
+  .project-card .button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .project-card .pdf-button {
+    width: 100%;
+    margin: 0;
+  }
+}
