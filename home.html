@@ -2,71 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Dionysios Chontzakis | Home</title>
   <link rel="icon" type="image/png" href="icon.png">
-  <title>Dionysios Chontzakis</title>
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+  <link rel="stylesheet" href="style.css">
   <style>
-    /* Background canvas */
-    #background-home {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-      background: black;
+    #main-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 70px);
+      padding: 2rem;
+      text-align: center;
     }
+    .header, .about { width: 100%; max-width: 800px; margin: 0 auto; }
+    .header { margin-bottom: 3rem; }
   </style>
 </head>
 <body>
-  <!-- Neural Network Background -->
-  <canvas id="background-home"></canvas>
+  <canvas id="background-canvas"></canvas>
 
-  <!-- Sidebar -->
-  <div id="mySidebar" class="sidebar">
-    <div class="sidebar-content">
+  <nav class="top-nav">
+    <div class="nav-container">
+      <div class="social-nav">
+        <a href="mailto:dchontzakis@gmail.com" target="_blank" class="nav-social-icon"><i class="fa-regular fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/dionysios-chontzakis-b540023b0/" target="_blank" class="nav-social-icon"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Chontzakis" target="_blank" class="nav-social-icon"><i class="fab fa-github"></i></a>
+      </div>
       <div class="nav-links">
-        <a href="home.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="thesis.html">Thesis</a>
+        <a href="home.html" class="nav-link" data-page="home">Home</a>
+        <a href="projects.html" class="nav-link" data-page="projects">Projects</a>
+        <a href="thesis.html" class="nav-link" data-page="thesis">Thesis</a>
       </div>
-      <div class="sidebar-footer">
-        <h3>Contact</h3>
-        <div class="social-icons">
-          <a href="mailto:dionysischontzakis@gmail.com" target="_blank"><i class="fa-regular fa-envelope"></i></a>
-          <!-- <a href="https://www.instagram.com/chontzakis/" target="_blank"><i class="fab fa-instagram"></i></a> -->
-          <a href="https://www.linkedin.com/in/dionysios-chontzakis-b540023b0/" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/Chontzakis" target="_blank"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
+      <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
     </div>
-  </div>
+  </nav>
 
-  <!-- Theme toggle button -->
-  <div class="theme-toggle-wrapper">
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Switch theme">
-      <i class="fas fa-moon"></i>
-    </button>
-  </div>
-
-  <!-- Main Content -->
-  <div id="main">
-    <button class="openbtn" onclick="toggleNav()">&#9776;</button>
-    
+  <main id="main-content">
     <header class="header">
-      <h1 class="fade-in">Dionysios Chontzakis</h1>
-      <p class="fade-in delay-1">Mathematician | Data Scientist | ML Enthusiast</p>
+      <h2 id="typewriter-name" class="typewriter-text"></h2>
+      <p id="typewriter-title" class="typewriter-text"></p>
     </header>
-
-    <section class="about fade-in delay-2">
-      <h2>About Me</h2>
-      <p>I'm a Mathematician with a Master's in Data Science & Machine Learning.</p>
-      <p>I explore theoretical and practical applications of AI and Machine Learning.</p>
+    <section class="about">
+      <h2 id="typewriter-about-heading" class="typewriter-text"></h2>
+      <p id="typewriter-about-line1" class="typewriter-text"></p>
+      <p id="typewriter-about-line2" class="typewriter-text"></p>
     </section>
-  </div>
+  </main>
 
   <script src="script.js"></script>
-  <script src="background_home.js"></script>
+  <script>
+    (function() {
+      const texts = {
+        name: "Dionysios Chontzakis",
+        title: "Mathematician | Data Scientist | ML Enthusiast",
+        aboutHeading: "About Me",
+        aboutLine1: "I'm a Mathematician with a Master's in Data Science & Machine Learning.",
+        aboutLine2: "I explore theoretical and practical applications of AI and ML."
+      };
+      const elements = {
+        name: document.getElementById('typewriter-name'),
+        title: document.getElementById('typewriter-title'),
+        aboutHeading: document.getElementById('typewriter-about-heading'),
+        aboutLine1: document.getElementById('typewriter-about-line1'),
+        aboutLine2: document.getElementById('typewriter-about-line2')
+      };
+      const sentences = [
+        { element: 'name', text: texts.name, pauseAfter: 500 },
+        { element: 'title', text: texts.title, pauseAfter: 1000 },
+        { element: 'aboutHeading', text: texts.aboutHeading, pauseAfter: 500 },
+        { element: 'aboutLine1', text: texts.aboutLine1, pauseAfter: 500 },
+        { element: 'aboutLine2', text: texts.aboutLine2, pauseAfter: 2000 }
+      ];
+      let currentIndex = 0, currentChar = 0, currentEl = null, fullText = '', timer = null;
+      function setCursor(el, show) { if (el) show ? el.classList.add('has-cursor') : el.classList.remove('has-cursor'); }
+      function clearCursors() { Object.values(elements).forEach(el => setCursor(el, false)); }
+      function typeNext() {
+        if (currentChar < fullText.length) {
+          currentEl.textContent += fullText[currentChar];
+          currentChar++;
+          timer = setTimeout(typeNext, 40);
+        } else {
+          setCursor(currentEl, true);
+          if (currentIndex < sentences.length - 1) {
+            setTimeout(() => {
+              setCursor(currentEl, false);
+              currentIndex++;
+              startCurrent();
+            }, sentences[currentIndex].pauseAfter);
+          }
+        }
+      }
+      function startCurrent() {
+        const s = sentences[currentIndex];
+        currentEl = elements[s.element];
+        fullText = s.text;
+        currentChar = 0;
+        currentEl.textContent = '';
+        clearCursors();
+        setCursor(currentEl, true);
+        typeNext();
+      }
+      Object.values(elements).forEach(el => { if (el) el.textContent = ''; });
+      startCurrent();
+    })();
+  </script>
 </body>
 </html>

@@ -1,42 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Fade-in observer
-  const elements = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-  elements.forEach(el => observer.observe(el));
-
-  // --- THEME TOGGLE LOGIC ---
+(function() {
+  // Theme toggle
   const themeToggleBtn = document.getElementById('theme-toggle');
   const themeIcon = themeToggleBtn?.querySelector('i');
-
-  // Load saved theme from localStorage
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'light') {
-    document.body.classList.add('light-theme');
-    if (themeIcon) {
-      themeIcon.classList.remove('fa-moon');
-      themeIcon.classList.add('fa-sun');
-    }
-  } else {
-    // default dark
-    document.body.classList.remove('light-theme');
-    if (themeIcon) {
-      themeIcon.classList.remove('fa-sun');
-      themeIcon.classList.add('fa-moon');
-    }
-  }
-
-  // Notify canvas of theme change (canvas will redraw)
-  function notifyCanvasTheme() {
-    const isLight = document.body.classList.contains('light-theme');
-    // Dispatch a custom event so background_home.js can react
-    window.dispatchEvent(new CustomEvent('themeChanged', { detail: { isLight } }));
-  }
 
   function setTheme(theme) {
     if (theme === 'light') {
@@ -54,7 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       localStorage.setItem('theme', 'dark');
     }
-    notifyCanvasTheme();
+  }
+
+  function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') setTheme('light');
+    else setTheme('dark');
   }
 
   if (themeToggleBtn) {
@@ -63,32 +33,35 @@ document.addEventListener("DOMContentLoaded", () => {
       setTheme(isLight ? 'dark' : 'light');
     });
   }
+  loadTheme();
 
-  // initial notification to canvas
-  notifyCanvasTheme();
-});
-
-// Sidebar toggle functions (unchanged)
-function toggleNav() {
-  const sidebar = document.getElementById("mySidebar");
-  const main = document.getElementById("main");
-  if (sidebar.style.width === "300px" || sidebar.classList.contains('active')) {
-    closeNav();
-  } else {
-    openNav();
+  // Active navigation link highlighting
+  function setActiveNavLink() {
+    const currentPath = window.location.pathname;
+    let currentPage = 'home';
+    if (currentPath.includes('projects.html')) currentPage = 'projects';
+    else if (currentPath.includes('thesis.html')) currentPage = 'thesis';
+    else if (currentPath.endsWith('/') || currentPath.endsWith('home.html') || currentPath === '' || currentPath.endsWith('index.html')) currentPage = 'home';
+    
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      const linkPage = link.getAttribute('data-page');
+      if (linkPage === currentPage) link.classList.add('active');
+    });
   }
-}
+  setActiveNavLink();
 
-function openNav() {
-  document.getElementById("mySidebar").style.width = "300px";
-  document.getElementById("main").style.marginLeft = "300px";
-}
-
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
-}
-
-// Ensure menu-toggle exists (if you have one)
-const menuToggle = document.querySelector('.menu-toggle');
-if (menuToggle) menuToggle.addEventListener('click', toggleNav);
+  // Fade-in observer (for elements with .fade-in class)
+  const fadeElements = document.querySelectorAll('.fade-in');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'none';
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeElements.forEach(el => fadeObserver.observe(el));
+})();

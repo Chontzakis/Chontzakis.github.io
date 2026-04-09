@@ -2,103 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Dionysios Chontzakis | Thesis</title>
   <link rel="icon" type="image/png" href="icon.png">
-  <title>Dionysios Chontzakis</title>
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- <style>
-    /* Background canvas */
-    #background-thesis {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-      background: black;
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #main-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 70px);
+      padding: 2rem;
     }
-  </style> -->
-
+    .thesis-abstract {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .thesis-abstract.visible {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
-    <!-- <canvas id="background-thesis"></canvas> -->
+  <canvas id="background-canvas"></canvas>
 
-    <!-- Theme toggle button -->
-    <div class="theme-toggle-wrapper">
-        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Switch theme">
-            <i class="fas fa-moon"></i>
-        </button>
+  <nav class="top-nav">
+    <div class="nav-container">
+      <div class="social-nav">
+        <a href="mailto:dionysischontzakis@gmail.com" target="_blank" class="nav-social-icon"><i class="fa-regular fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/dionysios-chontzakis-b540023b0/" target="_blank" class="nav-social-icon"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Chontzakis" target="_blank" class="nav-social-icon"><i class="fab fa-github"></i></a>
+      </div>
+      <div class="nav-links">
+        <a href="home.html" class="nav-link" data-page="home">Home</a>
+        <a href="projects.html" class="nav-link" data-page="projects">Projects</a>
+        <a href="thesis.html" class="nav-link" data-page="thesis">Thesis</a>
+      </div>
+      <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
     </div>
+  </nav>
 
-    <!-- Sidebar -->
-    <div id="mySidebar" class="sidebar">
-        <div class="sidebar-content">
-            <!-- Navigation Links -->
-            <div class="nav-links">
-                <a href="home.html">Home</a>
-                <a href="projects.html">Projects</a>
-                <a href="thesis.html">Thesis</a>
-            </div>
-            
-            <!-- Social Media Section at Bottom -->
-            <div class="sidebar-footer">
-                <h3>Contact</h3>
-                <div class="social-icons">
-                    <a href="mailto:dionysischontzakis@gmail.com" target="_blank"><i class="fa-regular fa-envelope"></i></a>
-                    <!-- <a href="https://www.instagram.com/chontzakis/" target="_blank"><i class="fab fa-instagram"></i></a> -->
-                    <a href="https://www.linkedin.com/in/dionysios-chontzakis-b540023b0/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Chontzakis" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
+  <main id="main-content">
+    <div class="section-header">
+      <!-- <h1 id="thesis-heading" class="typewriter-text"></h1> -->
+      <h2 id="thesis-subtitle" class="typewriter-text"></h2>
+    </div>
+    <div id="thesis-abstract" class="thesis-abstract">
+      <h3>Abstract</h3>
+      <p>Graphs are Mathematical models used to represent conceptual connections between entities. In these models, entities are represented by nodes and the connections between them by edges. In the domain of Social Network Analysis, the analysis of these models primarily aims to highlight similar nodes and secondly to create communities of similar nodes that communicate, a process known as Community Detection. Representing graphs in Hyperbolic Spaces enriches the information they carry. This is because Hyperbolic Geometry better characterizes the Geometry of graphs with a hierarchical structure. In such Spaces, the similarity between nodes is translated in hyperbolic distance, which adds a spatial dimension in the community organization.</p>
+      <p> The problem at hand is how a network can be embedded into Hyperbolic Space. This can be achieved through various methods, including the well-known HyperMap approach. The aim of the present work was to develop a new graph embedding method using Machine Learning that approximates the embedding produced by HyperMap. Within this context, Graph Neural Network models were employed on synthetic graph data. Graphs with 100 or more nodes were embedded, and the embedding quality was compared with that of HyperMap. Additionally, the performance of the model was investigated as the size of the graphs increased</p>
+    </div>
+    <div class="thesis-container" id="thesis-container">
+      <div class="project-card">
+        <h2>Greek Version</h2>
+        <div class="button-group">
+          <a href="thesis_gr.pdf" class="pdf-button view-button" target="_blank"><i class="fas fa-eye"></i> View PDF</a>
+          <a href="thesis_gr.pdf" class="pdf-button download-button"><i class="fas fa-download"></i> Download PDF</a>
         </div>
+      </div>
+      <div class="project-card">
+        <h2>English Version</h2>
+        <div class="button-group">
+          <a href="thesis_en.pdf" class="pdf-button view-button" target="_blank"><i class="fas fa-eye"></i> View PDF</a>
+          <a href="thesis_en.pdf" class="pdf-button download-button"><i class="fas fa-download"></i> Download PDF</a>
+        </div>
+      </div>
     </div>
+  </main>
 
-    <div id="main">
-        <button class="openbtn" onclick="toggleNav()">&#9776;</button>
-        
-        <header class="header">
-            <h1>Thesis</h1>
-        </header>
-        
-            <h2 class = "fade-in delay-1">Combining Geometry and Learning: Hyperbolic Graph Embeddings with GNNs</h2>
-            
-            <h3 class = "fade-in delay-2">Graphs are Mathematical models used to represent conceptual connections between entities. In these models, entities are represented by nodes and the connections between them by edges. In the domain of Social Network Analysis, the analysis of these models primarily aims to highlight similar nodes and secondly to create communities of similar nodes that communicate, a process known as Community Detection. Representing graphs in Hyperbolic Spaces enriches the information they carry. This is because Hyperbolic Geometry better characterizes the Geometry of graphs with a hierarchical structure. In such Spaces, the similarity between nodes is translated in hyperbolic distance, which adds a spatial dimension in the community organization. </h3>
-            <h3 class = "fade-in delay-3"> The problem at hand is how a network can be embedded into Hyperbolic Space. This can be achieved through various methods, including the well-known HyperMap approach. The aim of the present work was to develop a new graph embedding method using Machine Learning that approximates the embedding produced by HyperMap. Within this context, Graph Neural Network models were employed on synthetic graph data. The performance of the model was investigated as the size of the graphs increased.
-            </h3>
-
-        <section class="projects fade-in delay-4">
-            <!-- Greek Version -->
-            <div class="version-section centered">
-                <h3>Greek Version</h3>
-                <div class="button-group centered">
-                    <a href="thesis_gr.pdf" target="_blank" class="pdf-button view-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>View PDF</span>
-                    </a>
-                    <a href="thesis_gr.pdf" download="Thesis_Greek.pdf" class="pdf-button download-button">
-                        <i class="fas fa-download"></i>
-                        <span>Download PDF</span>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- English Version -->
-            <div class="version-section centered">
-                <h3>English Version</h3>
-                <div class="button-group centered">
-                    <a href="thesis_en.pdf" target="_blank" class="pdf-button view-button">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>View PDF</span>
-                    </a>
-                    <a href="thesis_en.pdf" download="Thesis_English.pdf" class="pdf-button download-button">
-                        <i class="fas fa-download"></i>
-                        <span>Download PDF</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
+  <script>
+    (function() {
+      // const headingEl = document.getElementById('thesis-heading');
+      const subtitleEl = document.getElementById('thesis-subtitle');
+      const abstractEl = document.getElementById('thesis-abstract');
+      // const headingText = "Master's Thesis";
+      const subtitleText = "Combining Geometry and Learning: Hyperbolic Graph Embeddings with GNNs";
+      function typeWriter(element, text, callback, speed = 45) {
+        let i = 0;
+        element.textContent = '';
+        element.classList.add('has-cursor');
+        function type() {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          } else {
+            element.classList.remove('has-cursor');
+            if (callback) callback();
+          }
+        }
+        type();
+      }
+  typeWriter(subtitleEl, subtitleText, () => {
+    setTimeout(() => abstractEl.classList.add('visible'), 200);
+    setTimeout(() => {
+      const cards = document.querySelectorAll('#thesis-container .project-card');
+      cards.forEach((card, idx) => {
+        setTimeout(() => card.classList.add('revealed'), idx * 250);
+      });
+    }, 800);
+  }, 40);
+})();
+  </script>
 </body>
 </html>
