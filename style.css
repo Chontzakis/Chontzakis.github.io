@@ -428,7 +428,7 @@ body.light-theme .header h1 {
   flex: 1 0 auto;   /* allow buttons to grow but not shrink too much */
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .project-card .button-group {
     flex-direction: column;
     align-items: stretch;
@@ -436,5 +436,35 @@ body.light-theme .header h1 {
   .project-card .pdf-button {
     width: 100%;
     margin: 0;
+  }
+    .nav-container {
+    gap: 1rem; /* adds space between grid columns */
+  }
+  
+  /* Optionally reduce social icon gap and font size further */
+  .social-nav {
+    gap: 0.5rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    gap: 0.75rem;
+  }
+  .social-nav {
+    gap: 0.4rem;
+  }
+  .nav-links {
+    gap: 0.75rem;
+  }
+  .nav-social-icon {
+    font-size: 1rem;
+  }
+  .nav-link {
+    font-size: 0.85rem;
   }
 }
