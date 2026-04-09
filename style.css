@@ -431,59 +431,44 @@ body.light-theme .header h1 {
 @media (max-width: 700px) {
   /* Keep nav container as grid, but align items to the top */
   .nav-container {
-    grid-template-columns: auto 1fr auto;
-    gap: 1rem;
-    align-items: start;  /* prevents center items from being pushed down */
+    grid-template-columns: auto 1fr auto !important;
+    gap: 1rem !important;
+    align-items: start !important;
   }
 
-  /* Stack social icons vertically */
+  /* Stack social icons vertically - FORCED */
   .social-nav {
-    flex-direction: column;
-    gap: 0.5rem;
-    justify-self: start;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    justify-self: start !important;
+    display: flex !important;
   }
 
   /* Ensure nav links and theme toggle stay at the top */
   .nav-links {
-    align-self: start;
+    align-self: start !important;
   }
 
   .theme-toggle-btn {
-    align-self: start;
+    align-self: start !important;
   }
 
-  /* Optional: reduce icon size */
   .nav-social-icon {
-    font-size: 1.2rem;
+    font-size: 1.2rem !important;
   }
 }
 
 @media (max-width: 480px) {
-  /* Keep nav container as grid, but align items to the top */
   .nav-container {
-    grid-template-columns: auto 1fr auto;
-    gap: 0.75rem;
-    align-items: start;  /* prevents center items from being pushed down */
+    grid-template-columns: auto 1fr auto !important;
+    gap: 0.75rem !important;
+    align-items: start !important;
   }
-
-  /* Stack social icons vertically */
   .social-nav {
-    flex-direction: column;
-    gap: 0.4rem;
-    justify-self: start;
+    flex-direction: column !important;
+    gap: 0.4rem !important;
   }
-
-  /* Ensure nav links and theme toggle stay at the top */
-  .nav-links {
-    align-self: start;
-  }
-
-  .theme-toggle-btn {
-    align-self: start;
-  }
-
-  /* Optional: reduce icon size */
   .nav-social-icon {
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
 }
