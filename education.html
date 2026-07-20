@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Dionysios Chontzakis | Education & Credentials</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #main-content {
+      min-height: calc(100vh - 70px);
+      padding: 2rem 1.5rem 4rem;
+    }
+    .education-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="background-canvas"></canvas>
+
+  <div class="top-nav">
+    <div class="nav-container">
+      <div class="nav-group nav-left">
+        <div class="contact-dropdown">
+          <button class="contact-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+            <i class="fas fa-paper-plane"></i>
+            <span>Contact</span>
+          </button>
+          <div class="contact-menu" role="menu">
+            <a href="mailto:dionysischontzakis@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-menu-item" role="menuitem">
+              <i class="fa-regular fa-envelope"></i><span>Email</span>
+            </a>
+            <a href="https://www.linkedin.com/in/dionysios-chontzakis-b540023b0/" target="_blank" rel="noopener noreferrer" class="contact-menu-item" role="menuitem">
+              <i class="fab fa-linkedin"></i><span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/Chontzakis" target="_blank" rel="noopener noreferrer" class="contact-menu-item" role="menuitem">
+              <i class="fab fa-github"></i><span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="home.html" class="nav-link" data-page="home">Home</a>
+        <a href="projects.html" class="nav-link" data-page="projects">Projects</a>
+        <a href="thesis.html" class="nav-link" data-page="thesis">Thesis</a>
+        <a href="education.html" class="nav-link" data-page="education">Education</a>
+      </div>
+      <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div class="education-page">
+      <section class="section-header">
+        <h2 id="education-heading" class="typewriter-text">Academic Background</h2>
+      </section>
+
+      <section class="education-grid">
+        <article class="education-card">
+          <div class="card-content">
+            <div class="card-icon" aria-hidden="true">
+              <img src="nkua.svg" alt="National Technical University of Athens logo">
+            </div>
+            <div class="card-text">
+              <span class="education-pill">Bachelor's</span>
+              <h3>Mathematics</h3>
+              <h3>19/09/2018 - 13/11/2023</h3>
+              <p>Degree: 8.02/10</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="education-card">
+          <div class="card-content">
+            <div class="card-icon" aria-hidden="true">
+              <img src="ntua.svg" alt="National and Technical University of Athens logo">
+            </div>
+            <div class="card-text">
+              <span class="education-pill">MSc's</span>
+              <h3>Data Science & Machine Learning</h3>
+              <h3>27/09/2023 - 17/07/2025</h3>
+              <p>Degree: 9.39/10</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="certifications-section">
+        <div class="section-header compact">
+          <h2>Certifications</h2>
+        </div>
+
+        <div class="certifications-grid">
+
+          <article class="education-card compact-card">
+            <div class="card-content">
+              <div class="card-icon" aria-hidden="true">
+                <img src="microsoft.svg" alt="Microsoft logo">
+              </div>
+              <div class="card-text">
+                <h4>Azure AI 901</h4>
+                <p>Microsoft</p>
+                <p>In Progress</p>
+                <p>Azure AI Fundamentals</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- <article class="education-card compact-card">
+            <div class="card-content">
+              <div class="card-icon" aria-hidden="true">
+                <img src="nkua.webp" alt="Certification logo">
+              </div>
+              <div class="card-text">
+                <h4>Certificate Title</h4>
+                <p>Issuer • Date • Short description</p>
+              </div>
+            </div>
+          </article>
+          
+          <article class="education-card compact-card">
+            <div class="card-content">
+              <div class="card-icon" aria-hidden="true">
+                <img src="ntua.svg" alt="Certification logo">
+              </div>
+              <div class="card-text">
+                <h4>Certificate Title</h4>
+                <p>Issuer • Date • Short description</p>
+              </div>
+            </div>
+          </article> -->
+
+        </div>
+      </section>
+    </div>
+  </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

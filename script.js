@@ -35,12 +35,50 @@
   }
   loadTheme();
 
+  const contactDropdown = document.querySelector('.contact-dropdown');
+  const contactToggle = document.querySelector('.contact-toggle');
+
+  if (contactDropdown && contactToggle) {
+    const closeContactMenu = () => {
+      contactDropdown.classList.remove('open');
+      contactToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    contactToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const isOpen = contactDropdown.classList.contains('open');
+      if (isOpen) {
+        closeContactMenu();
+      } else {
+        contactDropdown.classList.add('open');
+        contactToggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!contactDropdown.contains(event.target)) {
+        closeContactMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeContactMenu();
+      }
+    });
+
+    contactDropdown.querySelectorAll('.contact-menu-item').forEach((item) => {
+      item.addEventListener('click', closeContactMenu);
+    });
+  }
+
   // Active navigation link highlighting
   function setActiveNavLink() {
     const currentPath = window.location.pathname;
     let currentPage = 'home';
     if (currentPath.includes('projects.html')) currentPage = 'projects';
     else if (currentPath.includes('thesis.html')) currentPage = 'thesis';
+    else if (currentPath.includes('education.html') || currentPath.includes('certifications.html')) currentPage = 'education';
     else if (currentPath.endsWith('/') || currentPath.endsWith('home.html') || currentPath === '' || currentPath.endsWith('index.html')) currentPage = 'home';
     
     const navLinks = document.querySelectorAll('.nav-link');
@@ -62,6 +100,41 @@
         fadeObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.9 });
   fadeElements.forEach(el => fadeObserver.observe(el));
+
+  // Fade the thesis intro smoothly as it reaches the top-button area
+  const thesisHero = document.getElementById('thesis-hero');
+  if (thesisHero) {
+    const fadeStart = 260;
+    const fadeEnd = 80;
+    let ticking = false;
+
+    const updateThesisHeroFade = () => {
+      const rect = thesisHero.getBoundingClientRect();
+      const top = rect.top;
+
+      if (top >= fadeStart) {
+        thesisHero.style.opacity = '1';
+        return;
+      }
+
+      const progress = Math.min(1, Math.max(0, (fadeStart - Math.max(top, fadeEnd)) / (fadeStart - fadeEnd)));
+      thesisHero.style.opacity = (1 - progress).toString();
+    };
+
+    const requestUpdate = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateThesisHeroFade();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    updateThesisHeroFade();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+  }
 })();
