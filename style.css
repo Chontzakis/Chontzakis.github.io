@@ -693,9 +693,18 @@ body.light-theme .header h1 {
   }
 
   .nav-links {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    order: 0;
+    flex-wrap: nowrap !important; /* Prevent wrapping */
+    gap: 0.5rem !important; /* Reduce gap between links */
+    overflow-x: auto !important; /* Allow horizontal scroll if needed */
+    justify-content: center !important;
+    width: 100%;
+    padding: 0.25rem 0;
+  }
+
+  .nav-link {
+    font-size: 0.85rem !important; /* Smaller font */
+    padding: 0.3rem 0.4rem !important;
+    white-space: nowrap !important; /* Prevent text from wrapping */
   }
 
   /* Hide the contact dropdown inside the navbar */
