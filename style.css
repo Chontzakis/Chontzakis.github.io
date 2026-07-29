@@ -242,38 +242,6 @@ body {
   background: rgba(44, 125, 160, 0.12);
 }
 
-@media (max-width: 900px) {
-  .top-nav {
-    top: 0.75rem;
-    padding: 0 0.75rem;
-  }
-
-  .nav-container {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-    border-radius: 1.25rem;
-  }
-
-  .nav-group.nav-left,
-  .theme-toggle-btn {
-    justify-self: center;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;
-    gap: 0.75rem 1.25rem;
-  }
-
-  .contact-menu {
-    left: 50%;
-    transform: translateX(-50%) translateY(-6px);
-  }
-
-  .contact-dropdown.open .contact-menu {
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
 /* Main content */
 #main-content {
   padding-top: 5rem;
@@ -350,7 +318,7 @@ p {
   text-align: center;
 }
 .project-card h3 {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   margin-top: 0;
   margin-bottom: 1rem;
   /* border-bottom: 2px solid var(--accent-color); */
@@ -497,18 +465,7 @@ p {
 .compact-card {
   padding: 1.25rem 1.3rem;
 }
-@media (max-width: 700px) {
-  .thesis-container {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
-  .education-grid,
-  .certifications-grid {
-    grid-template-columns: 1fr;
-    padding: 0 0.5rem;
-  }
-}
+
 .thesis-abstract {
   max-width: 800px;
   margin: 1.5rem auto;
@@ -702,45 +659,6 @@ body.light-theme .header h1 {
   color: var(--light-text-color);
 }
 
-/* Responsive */
-@media (max-width: 700px) {
-  .top-nav {
-    padding: 0.6rem 1rem 0;
-    height: auto;
-  }
-  .social-nav { gap: 0.7rem; }
-  .nav-social-icon { font-size: 1.1rem; }
-  .nav-links { gap: 1.2rem; }
-  .nav-link { font-size: 1rem; }
-  .theme-toggle-btn { font-size: 1.1rem; }
-  #main-content { padding-top: 4.5rem; }
-  h1 { font-size: 2.2rem; }
-  .projects-grid, .full-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
-  .thesis-container {
-    padding: 1rem;
-  }
-}
-
-.section-header {
-  margin-top: 3rem;  /* or adjust to your preference */
-}
-
-@media (max-width: 700px) {
-  .section-header {
-    margin-top: 2rem; /* less than desktop but still gives space */
-  }
-}
-
-/* Prevent typewriter cursor from causing overflow */
-.typewriter-text {
-  word-break: break-word;
-  max-width: 100%;
-}
-
 /* Improve button spacing inside project cards */
 .project-card .button-group {
   display: flex;
@@ -755,47 +673,148 @@ body.light-theme .header h1 {
   flex: 1 0 auto;   /* allow buttons to grow but not shrink too much */
 }
 
-@media (max-width: 700px) {
-  /* Keep nav container as grid, but align items to the top */
+/* ========== SINGLE RESPONSIVE MEDIA QUERY ========== */
+@media (max-width: 900px) {
+  .top-nav {
+    top: 0.75rem;
+    padding: 0 0.75rem;
+    z-index: 1000;
+  }
+
   .nav-container {
-    grid-template-columns: auto 1fr auto !important;
-    gap: 1rem !important;
-    align-items: start !important;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    border-radius: 1.25rem;
+    position: relative;
   }
 
-  /* Stack social icons vertically - FORCED */
-  .social-nav {
-    flex-direction: column !important;
-    gap: 0.5rem !important;
-    justify-self: start !important;
-    display: flex !important;
+  .nav-group.nav-left {
+    display: contents;
   }
 
-  /* Ensure nav links and theme toggle stay at the top */
   .nav-links {
-    align-self: start !important;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    order: 0;
   }
 
-  .theme-toggle-btn {
-    align-self: start !important;
+  /* Hide the contact dropdown inside the navbar */
+  .nav-container .contact-dropdown {
+    display: none !important;
   }
 
-  .nav-social-icon {
+  /* Hide the theme toggle inside the navbar */
+  .nav-container .theme-toggle-btn {
+    display: none !important;
+  }
+
+  /* Create floating buttons at the bottom */
+  .contact-dropdown.floating-contact {
+    position: fixed !important;
+    left: 1rem !important;
+    bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+    top: auto !important;
+    right: auto !important;
+    z-index: 1200 !important;
+    display: block !important;
+  }
+
+  .theme-toggle-btn.floating-theme {
+    position: fixed !important;
+    right: 1rem !important;
+    bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+    left: auto !important;
+    top: auto !important;
+    z-index: 1200 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(40, 40, 40, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22) !important;
+    color: var(--text-color) !important;
+    font-size: 1.3rem !important;
+  }
+
+  .light-theme .theme-toggle-btn.floating-theme {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: var(--light-text-color) !important;
+    border-color: var(--light-border-color) !important;
+  }
+
+  /* Style the floating contact toggle button */
+  .contact-dropdown.floating-contact .contact-toggle {
+    width: 3rem !important;
+    height: 3rem !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    border-radius: 999px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22) !important;
+    display: flex !important;
+    align-items: center !important;
+    background: rgba(40, 40, 40, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    color: var(--text-color) !important;
     font-size: 1.2rem !important;
+    position: relative !important;
   }
-}
 
-@media (max-width: 480px) {
-  .nav-container {
-    grid-template-columns: auto 1fr auto !important;
-    gap: 0.75rem !important;
-    align-items: start !important;
+  .light-theme .contact-dropdown.floating-contact .contact-toggle {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: var(--light-text-color) !important;
+    border-color: var(--light-border-color) !important;
   }
-  .social-nav {
-    flex-direction: column !important;
-    gap: 0.4rem !important;
+
+  .contact-dropdown.floating-contact .contact-toggle span {
+    display: none !important;
   }
-  .nav-social-icon {
-    font-size: 1rem !important;
+
+  .contact-dropdown.floating-contact .contact-menu {
+    left: 0 !important;
+    bottom: calc(100% + 0.6rem) !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  .contact-dropdown.floating-contact.open .contact-menu {
+    transform: none !important;
+  }
+
+  #main-content {
+    padding-bottom: 6rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .projects-grid,
+  .full-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .thesis-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .section-header {
+    margin-top: 3rem;
+  }
+
+  .typewriter-text {
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  .education-grid,
+  .certifications-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }

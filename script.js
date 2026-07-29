@@ -1,7 +1,9 @@
 (function() {
   // Theme toggle
   const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeToggleFloating = document.getElementById('theme-toggle-floating');
   const themeIcon = themeToggleBtn?.querySelector('i');
+  const themeIconFloating = themeToggleFloating?.querySelector('i');
 
   function setTheme(theme) {
     if (theme === 'light') {
@@ -10,12 +12,20 @@
         themeIcon.classList.remove('fa-moon');
         themeIcon.classList.add('fa-sun');
       }
+      if (themeIconFloating) {
+        themeIconFloating.classList.remove('fa-moon');
+        themeIconFloating.classList.add('fa-sun');
+      }
       localStorage.setItem('theme', 'light');
     } else {
       document.body.classList.remove('light-theme');
       if (themeIcon) {
         themeIcon.classList.remove('fa-sun');
         themeIcon.classList.add('fa-moon');
+      }
+      if (themeIconFloating) {
+        themeIconFloating.classList.remove('fa-sun');
+        themeIconFloating.classList.add('fa-moon');
       }
       localStorage.setItem('theme', 'dark');
     }
@@ -27,50 +37,90 @@
     else setTheme('dark');
   }
 
+  // Add click listeners to both theme buttons
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
       const isLight = document.body.classList.contains('light-theme');
       setTheme(isLight ? 'dark' : 'light');
     });
   }
+
+  if (themeToggleFloating) {
+    themeToggleFloating.addEventListener('click', () => {
+      const isLight = document.body.classList.contains('light-theme');
+      setTheme(isLight ? 'dark' : 'light');
+    });
+  }
+
   loadTheme();
 
-  const contactDropdown = document.querySelector('.contact-dropdown');
-  const contactToggle = document.querySelector('.contact-toggle');
+  // Contact dropdown functionality (supports both navbar and floating)
+  const contactDropdowns = document.querySelectorAll('.contact-dropdown');
+  
+  contactDropdowns.forEach((dropdown) => {
+    const toggle = dropdown.querySelector('.contact-toggle');
+    if (!toggle) return;
 
-  if (contactDropdown && contactToggle) {
     const closeContactMenu = () => {
-      contactDropdown.classList.remove('open');
-      contactToggle.setAttribute('aria-expanded', 'false');
+      dropdown.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
     };
 
-    contactToggle.addEventListener('click', (event) => {
+    toggle.addEventListener('click', (event) => {
       event.stopPropagation();
-      const isOpen = contactDropdown.classList.contains('open');
+      const isOpen = dropdown.classList.contains('open');
+      
+      // Close all other dropdowns
+      contactDropdowns.forEach((d) => {
+        if (d !== dropdown) {
+          d.classList.remove('open');
+          const t = d.querySelector('.contact-toggle');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
       if (isOpen) {
         closeContactMenu();
       } else {
-        contactDropdown.classList.add('open');
-        contactToggle.setAttribute('aria-expanded', 'true');
+        dropdown.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
       }
     });
 
     document.addEventListener('click', (event) => {
-      if (!contactDropdown.contains(event.target)) {
-        closeContactMenu();
-      }
+      contactDropdowns.forEach((d) => {
+        if (!d.contains(event.target)) {
+          d.classList.remove('open');
+          const t = d.querySelector('.contact-toggle');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        }
+      });
     });
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
-        closeContactMenu();
+        contactDropdowns.forEach((d) => {
+          d.classList.remove('open');
+          const t = d.querySelector('.contact-toggle');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        });
       }
     });
 
-    contactDropdown.querySelectorAll('.contact-menu-item').forEach((item) => {
-      item.addEventListener('click', closeContactMenu);
+    dropdown.querySelectorAll('.contact-menu-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        closeContactMenu();
+        // Also close other dropdowns
+        contactDropdowns.forEach((d) => {
+          if (d !== dropdown) {
+            d.classList.remove('open');
+            const t = d.querySelector('.contact-toggle');
+            if (t) t.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
     });
-  }
+  });
 
   // Active navigation link highlighting
   function setActiveNavLink() {
